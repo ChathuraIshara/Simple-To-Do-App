@@ -105,8 +105,10 @@ module.exports = function (app) {
       res.status(500).json({ message: "Error marking todo as not completed" });
     }
   });
-  app.get('/todo/updatepage/:id',function(req,res){
-    res.render('updatetodo',{targetid:req.params.id});
+  app.get('/todo/updatepage/:id',async function(req,res){
+    var targetId=req.params.id;
+    var task=await Todo.findById(targetId);
+    res.render('updatetodo',{targetid:req.params.id,task:task});
   })
 
   app.post('/todo/updatetask',urlencodedParser,async function(req,res){
@@ -126,7 +128,7 @@ module.exports = function (app) {
         }
       } catch (err) {
         console.error(err);
-        res.status(500).json({ message: "Error marking todo as not completed" });
+        res.status(500).json({ message: "Error updating todo" });
       }
 
   });

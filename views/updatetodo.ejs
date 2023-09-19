@@ -11,7 +11,7 @@
         <div class="text-center">
             <h1 class="md-5">Daily Tasks!</h1>
                 <form method="post" action="/todo/updatetask" class="mt-4">
-                    <input type="text" name="task" class="form-control" placeholder="Enter your task"><br>
+                    <input type="text" name="task" class="form-control" placeholder="Enter your task"  value="<%= task ? task.item : '' %>"><br>
                     <input type="submit" class="btn btn-primary" value="Update">
                     <input type="hidden" value="<%=targetid%>" name="targetid">
                     <input type="button" class="btn btn-danger" value="Cancel">
